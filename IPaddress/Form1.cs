@@ -239,7 +239,7 @@ namespace IPaddress
 			this.Controls.Add(this.txtPrefix);
 			this.Controls.Add(this.txtMask);
 			this.Controls.Add(this.txtIpAddress);
-			this.Controls.Add(this.label4);
+			this.Controls.Add(this.label4); 
 			this.Controls.Add(this.label3);
 			this.Controls.Add(this.label2);
 			this.Controls.Add(this.label1);
