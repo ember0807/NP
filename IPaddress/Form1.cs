@@ -27,12 +27,14 @@ namespace IPaddress
 		{
 			InitializeComponent();
 
-			// Задаем значения по умолчанию
-			txtIpAddress.Text = "192.168.1.1";  // Пример IP-адреса
-			txtMask.Text = "255.255.255.0";     // Пример маски сети
+			
+			txtIpAddress.Text = "192.168.1.1";
+			txtMask.Text = "255.255.255.0";
 		}
 
-		
+		//IPAddress.TryParse — это статический метод класса IPAddress, который используется для попытки преобразования строки,
+		//представляющей IP-адрес, в объект типа IPAddress.Этот метод проверяет, является ли строка допустимым форматом IP-адреса
+		//(IPv4 или IPv6), и при успешном преобразовании возвращает объект IPAddress.
 
 		private void txtMask_TextChanged(object sender, EventArgs e)
 		{
@@ -41,7 +43,10 @@ namespace IPaddress
 				txtPrefix.Text = GetPrefixLength(mask).ToString();
 			}
 		}
-
+		//GetPrefixLength(IPAddress mask) :
+		//Этот метод принимает маску сети в формате IP и определяет, сколько битов в маске являются единицами.Это число и будет длиной префикса.
+		//GetMaskFromPrefix(int prefix):
+		//Этот метод принимает длину префикса и возвращает соответствующую маску в формате IP.Он создает целое число, представляющее маску, и преобразует его в объект IPAddress.
 		private void txtPrefix_TextChanged(object sender, EventArgs e)
 		{
 			if (int.TryParse(txtPrefix.Text, out int prefix))
@@ -107,7 +112,10 @@ namespace IPaddress
 			}
 			return count; // Возвращаем количество нулевых битов.
 		}
+		//Метод GetAddressBytes() возвращает массив байтов, который представляет маску сети.Например, маска 255.255.255.0 будет представлена как массив { 255, 255, 255, 0 }
+		//(или в двоичном виде 11111111.11111111.11111111.00000000).
 
+		//вычисление длины префикса маски сети
 		private int GetPrefixLength(IPAddress mask)
 		{
 			byte[] maskBytes = mask.GetAddressBytes();
